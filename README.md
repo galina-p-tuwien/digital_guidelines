@@ -4,3 +4,4 @@ Use cases demonstrating the generation and application of digital guidelines in 
 ## Use Case 1: ISO 6946:2017, Section 6.7.2 applied to a Generic Data Model
 
 ![Class and Object Diagrams](/UC1_01b.png)
+*Fig.1. A generic data model (a) and one possible instantiation (b)*
