@@ -17,3 +17,21 @@ It is to be noted that Section 6.7.2 describes a simplified method for the calcu
 
 ![Class and Object Diagrams](/UC1_01b.png)
 *Fig.3. A generic data model (a) and one possible instantiation (b).*
+
+![Adapted Model](/UC1_02.png)
+*Fig.4. The adapted model.*
+
+![Adapted Model w Connectivity](/UC1_03.png)
+*Fig.5. The adapted model with full connectivity.*
+
+### Use Case 1: ISO 6946:2017, Section 6.7.2 applied to an IFC Model
+
+![Typical IFC Wall](/UC2_01.png)
+*Fig.6 An IFC wall with a layered structure.*
+
+![IFC Wall w Profiles](/UC2_02.png)
+*Fig.7 An IFC wall with a profile structure.*
+
+![IFC Wall ISO 6946](/UC2_03.png)
+*Fig.8 An IFC wall adapted for calculating its thermal conductivity according to ISO 6946:2017, Section 6.7.2.*
+
