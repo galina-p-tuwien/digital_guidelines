@@ -5,11 +5,15 @@ This document contains additional data supporting the Paper “Digitalising Guid
 
 It is to be noted that Section 6.7.2 describes a simplified method for the calculation of the total thermal resistance of a building component. This method is based on one typical part of the component, not on the entire component. For detailed calculations taking thermal bridges into account there is the ISO 10211. 
 
-![Class and Object Diagrams](/UC0_walls_.png)
+![Walls](/UC0_walls_.png)
 
 *Fig.1. Typical wall footprints: (a) massive timber with an insulation layer, (b) acoustically decoupled wall with armed concrete inner shell, timber outer shell, and mineral wool as thermal insulation and acoustic dampener.*
+
+![Wall decomposition](/UC0_wall_decomposition_.png)
+
+*Fig.2. Wall decomposition: (b) in geometric profiles, (c) in cells according to ISO 6946:2017, Section 6.7.2.*
 
 ### Use Case 1: ISO 6946:2017, Section 6.7.2 applied to a Generic Data Model
 
 ![Class and Object Diagrams](/UC1_01b.png)
-*Fig.2. A generic data model (a) and one possible instantiation (b)*
+*Fig.3. A generic data model (a) and one possible instantiation (b).*
