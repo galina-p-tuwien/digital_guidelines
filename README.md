@@ -21,6 +21,8 @@ However, a model resulting from Fig.2(b) can be adapted to fulfil the requiremen
 
 ### Use Case 1: ISO 6946:2017, Section 6.7.2 applied to a Generic Data Model
 
+The first use case involves the modelling of the wall presented in Fig.1(a). We have chosen a fairly generic data model that could represent the architect’s view. It is shown in the box in Fig.3(a). Abstract type *Element* can have *Data* attached to it.
+
 ![Class and Object Diagrams](/UC1_01b.png)
 *Fig.3. A generic data model (a) and one possible instantiation (b).*
 
