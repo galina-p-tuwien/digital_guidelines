@@ -32,14 +32,27 @@ The first use case involves the modelling of the wall presented in Fig.1(a). We 
 ![Adapted Model w Connectivity](/UC1_03.png)
 *Fig.5. The adapted model with full connectivity.*
 
-### Use Case 1: ISO 6946:2017, Section 6.7.2 applied to an IFC Model
+### Use Case 2: ISO 6946:2017, Section 6.7.2 applied to an unsuitable model
+
+![Class and Object Diagrams](/UC3_01.png)
+*Fig.6. The wall construction (a), the corresponding data model (b) and one possible instantiation (c).*
+
+![Adapted Model](/UC3_02.png)
+*Fig.7. Model adaptation: step 1.*
+
+![Full Adapted Model](/UC3_03.png)
+*Fig.8. Model adaptation: step 2.*
+
+### Use Case 3: ISO 6946:2017, Section 6.7.2 applied to an IFC Model
 
 ![Typical IFC Wall](/UC2_01.png)
-*Fig.6 An IFC wall with a layered structure.*
+*Fig.9 An IFC wall with a layered structure.*
 
 ![IFC Wall w Profiles](/UC2_02.png)
-*Fig.7 An IFC wall with a profile structure.*
+*Fig.10 An IFC wall with a profile structure.*
 
 ![IFC Wall ISO 6946](/UC2_03.png)
-*Fig.8 An IFC wall adapted for calculating its thermal conductivity according to ISO 6946:2017, Section 6.7.2.*
+*Fig.11 An IFC wall adapted for calculating its thermal conductivity according to ISO 6946:2017, Section 6.7.2.*
+
+
 
