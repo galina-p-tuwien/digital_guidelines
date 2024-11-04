@@ -19,9 +19,19 @@ The next question is one of modelling. Fig.2 shows the different ways the wall f
 
 However, a model resulting from Fig.2(b) can be adapted to fulfil the requirements of the model resulting from Fig.2(c). We will demonstrate this on the following use cases.
 
-### Use Case 1: ISO 6946:2017, Section 6.7.2 applied to a Generic Data Model
+### Ise Case 1: A Step By Step Application of ISO 6946:2017, Section 6.7.2
 
-The first use case involves the modelling of the wall presented in Fig.1(a). We have chosen a fairly generic data model that could represent the architect’s view. It is shown in the box in Fig.3(a). Abstract type *Element* can have *Data* attached to it.
+![UC4 Initial Situation](UC4/UCx4_1.png)
+
+*Fig.X. The initial situation: (a) the inhomogeneous wall and (b) the data model.*
+
+![UC4 Original Model](UC4/UCx4_2.png)
+
+
+
+### Use Case 2: ISO 6946:2017, Section 6.7.2 applied to a Generic Data Model
+
+The second use case involves the modelling of the wall presented in Fig.1(a). We have chosen a fairly generic data model that could represent the architect’s view. It is shown in the box in Fig.3(a). Abstract type *Element* can have *Data* attached to it.
 
 ![Class and Object Diagrams](/UC1_01b.png)
 *Fig.3. A generic data model (a) and one possible instantiation (b).*
