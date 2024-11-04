@@ -29,9 +29,13 @@ However, a model resulting from Fig.2(b) can be adapted to fulfil the requiremen
 
 ### Use Case 1: A Step By Step Application of ISO 6946:2017, Section 6.7.2
 
+In this use case, we have chosen a very simple inhomogeneous construction, as shown in Fig.UC1.1(a). Each of the four parts, p1 to p4, is homogeneous in itself, consisting either of massive timber (the oblique hatch pattern) or of mineral wool. The data model (see Fig.UC1.1(b)) consists of only two types. Type ELEMENT allows containment or referencing between its instances. Each has its own thermal transmittance, height, and width. Type MATERIAL provides each instance of type ELEMENT with additional information, e.g., its design thermal conductivity.
+
 ![UC4 Initial Situation](UC4/UCx4_1small.png)
 
-*Fig.3. The initial situation: (a) the inhomogeneous wall and (b) the data model.*
+*Fig.UC1.1. The initial situation: (a) the inhomogeneous wall and (b) the data model.*
+
+In Fig.UC1.2 we see the instantiation of the data model in Fig.UC1.1(b). We have a hierarchical structure of elements, enabled by the containment relationship. At the top is instance **wall**, which consists of two parts, **wall A** and **wall B**. **Wall A** is comprised of parts **p1** and **p2**, while **wall B** – of parts **p3** and **p4**. Each part references an instance of type MATERIAL. For example, **p1** references **mineral wool**, and **p2** references **massive timber**.
 
 ![UC4 Original Model](UC4/UCx4_2.png)
 *Fig.4. The initial instantiation of the data model in Fig.3(b), consisting of two wall elements and four profile elements.*
