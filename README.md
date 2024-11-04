@@ -15,12 +15,16 @@ Fig.1 demonstrates the difference between the entire construction, e.g., wall, a
 
 *Fig.2. Wall decomposition: (b) in geometric profiles, (c) in cells according to ISO 6946:2017, Section 6.7.2.*
 
-The next question is one of modelling. Fig.2 shows the different ways the wall from Fig.1(b) can be decomposed into model elements. The model in Fig.2(b) groups adjacent elements of the same material, while the model in Fig.2(c) decomposes the typical section in layers and section in accordance with ISO 6946:2017, Section 6.7.2.2, Figure 1. Consequently, the two approaches produce models of vastly different sizes.
+The next question is one of modelling. Fig.2 shows the different ways the wall from Fig.1(b) can be decomposed into model elements. The model in Fig.2(b) groups adjacent elements of the same material, while the model in Fig.2(c) decomposes the typical section in layers and sections in accordance with ISO 6946:2017, Section 6.7.2.2, Figure 1. Consequently, the two approaches produce models of vastly different sizes.
 
-However, a model resulting from Fig.2(b) can be adapted to fulfil the requirements of the model resulting from Fig.2(c). We will demonstrate this on the following use cases.
+However, a model resulting from Fig.2(b) can be adapted to fulfil the requirements of the model resulting from Fig.2(c). We will demonstrate thisby applying the template we presented in the referenced paper (see Fig.3) to the following use cases:
+-Use Case 1: Very small generic data model, allowing significant modification.
+-Use Case 2: Small generic data model, simple example, allowing modification.
+-Use Case 3: Small generic data model, complex example, not suitable for modification.
+-Use Case 4: IFC, simple example, allowing modification.
 
 ![Templates](/UC4/iso6946_templates.png)
-*Fig.X. The applicable templates as constructed in the accompanying paper.*
+*Fig.3. The applicable templates as constructed in the accompanying paper.*
 
 ### Use Case 1: A Step By Step Application of ISO 6946:2017, Section 6.7.2
 
