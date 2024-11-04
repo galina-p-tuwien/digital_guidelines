@@ -19,9 +19,9 @@ The next question is one of modelling. Fig.2 shows the different ways the wall f
 
 However, a model resulting from Fig.2(b) can be adapted to fulfil the requirements of the model resulting from Fig.2(c). We will demonstrate this on the following use cases.
 
-### Ise Case 1: A Step By Step Application of ISO 6946:2017, Section 6.7.2
+### Use Case 1: A Step By Step Application of ISO 6946:2017, Section 6.7.2
 
-![UC4 Initial Situation](UC4/UCx4_1.png)
+![UC4 Initial Situation](UC4/UCx4_1small.png)
 
 *Fig.X. The initial situation: (a) the inhomogeneous wall and (b) the data model.*
 
