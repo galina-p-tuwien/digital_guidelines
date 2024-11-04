@@ -23,21 +23,28 @@ However, a model resulting from Fig.2(b) can be adapted to fulfil the requiremen
 
 ![UC4 Initial Situation](UC4/UCx4_1small.png)
 
-*Fig.X. The initial situation: (a) the inhomogeneous wall and (b) the data model.*
+*Fig.3. The initial situation: (a) the inhomogeneous wall and (b) the data model.*
 
 ![UC4 Original Model](UC4/UCx4_2.png)
+*Fig.4. The initial instantiation of the data model in Fig.3(b), consisting of two wall elements and four profile elements.*
 
 ![UC4 Defining a Section](UC4/UCx4_3.png)
+*Fig.5. Applying the SECTION template to a single existing element.*
 
 ![UC4 Defining a Cell](UC4/UCx4_4.png)
+*Fig.6. Applying the CELL template to two existing elements.*
 
 ![UC4 Defining a Layer](UC4/UCx4_5.png)
+*Fig.7. Applying the LAYER template by creating new elements and attaching them to existing ones.*
 
 ![UC4 Defining the Cumulative](UC4/UCx4_6.png)
+*Fig.8. Applying the CUMULATIVE template to an existing element and extending it by two further elements.*
 
 ![UC4 Re-calculations](UC4/UCx4_7.png)
+*Fig.9. Adding a calculation to fulfil a condition attached to the SECTION template.*
 
 ![UC4 Final Model](UC4/UCx4_8.png)
+*Fig.10. The final result of applying the template.*
 
 ### Use Case 2: ISO 6946:2017, Section 6.7.2 applied to a Generic Data Model
 
