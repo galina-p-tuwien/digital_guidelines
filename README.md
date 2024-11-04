@@ -27,7 +27,17 @@ However, a model resulting from Fig.2(b) can be adapted to fulfil the requiremen
 
 ![UC4 Original Model](UC4/UCx4_2.png)
 
+![UC4 Defining a Section](UC4/UCx4_3.png)
 
+![UC4 Defining a Cell](UC4/UCx4_4.png)
+
+![UC4 Defining a Layer](UC4/UCx4_5.png)
+
+![UC4 Defining the Cumulative](UC4/UCx4_6.png)
+
+![UC4 Re-calculations](UC4/UCx4_7.png)
+
+![UC4 Final Model](UC4/UCx4_8.png)
 
 ### Use Case 2: ISO 6946:2017, Section 6.7.2 applied to a Generic Data Model
 
