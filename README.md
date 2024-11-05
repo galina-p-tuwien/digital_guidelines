@@ -35,28 +35,28 @@ In this use case, we have chosen a very simple inhomogeneous construction, as sh
 
 *Fig.UC1.1. The initial situation: (a) the inhomogeneous wall and (b) the data model.*
 
-In Fig.UC1.2 we see the instantiation of the data model in Fig.UC1.1(b). We have a hierarchical structure of elements, enabled by the containment relationship. At the top is instance **wall**, which consists of two parts, **wall A** and **wall B**. **Wall A** is comprised of parts **p1** and **p2**, while **wall B** – of parts **p3** and **p4**. Each part references an instance of type MATERIAL. For example, **p1** references **mineral wool**, and **p2** references **massive timber**.
+In Fig.UC1.2 we see the instantiation of the data model in Fig.UC1.1(b). We have a hierarchical structure of elements, enabled by the containment relationship. At the top is instance **wall**, which consists of two parts, **wall A** and **wall B**. **Wall A** is comprised of parts **p1** and **p2**, while **wall B** – of parts **p3** and **p4**. Each part references an instance of type MATERIAL. For example, **p1** references **mineral wool**, and **p2** references **massive timber**. From the viewpoint of the architect, for example, this is enough information to describe the wall. However, if we want to prove that the thermal resistance of the entire construction has been calculated in accordance with ISO6946, we need to apply the relevant templates.
 
 ![UC4 Original Model](UC4/UCx4_2.png)
-*Fig.4. The initial instantiation of the data model in Fig.3(b), consisting of two wall elements and four profile elements.*
+*Fig.UC1.2. The initial instantiation of the data model in Fig.3(b), consisting of two wall elements and four profile elements.*
 
 ![UC4 Defining a Section](UC4/UCx4_3.png)
-*Fig.5. Applying the SECTION template to a single existing element.*
+*Fig.UC1.3. Applying the SECTION template to a single existing element.*
 
 ![UC4 Defining a Cell](UC4/UCx4_4.png)
-*Fig.6. Applying the CELL template to two existing elements.*
+*Fig.UC1.4. Applying the CELL template to two existing elements.*
 
 ![UC4 Defining a Layer](UC4/UCx4_5.png)
-*Fig.7. Applying the LAYER template by creating new elements and attaching them to existing ones.*
+*Fig.UC1.5. Applying the LAYER template by creating new elements and attaching them to existing ones.*
 
 ![UC4 Defining the Cumulative](UC4/UCx4_6.png)
-*Fig.8. Applying the CUMULATIVE template to an existing element and extending it by two further elements.*
+*Fig.UC1.6. Applying the CUMULATIVE template to an existing element and extending it by two further elements.*
 
 ![UC4 Re-calculations](UC4/UCx4_7.png)
-*Fig.9. Adding a calculation to fulfil a condition attached to the SECTION template.*
+*Fig.UC1.7. Adding a calculation to fulfil a condition attached to the SECTION template.*
 
 ![UC4 Final Model](UC4/UCx4_8.png)
-*Fig.10. The final result of applying the template.*
+*Fig.UC1.8. The final result of applying the template.*
 
 ### Use Case 2: ISO 6946:2017, Section 6.7.2 applied to a Generic Data Model
 
