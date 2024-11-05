@@ -40,6 +40,8 @@ In Fig.UC1.2 we see the instantiation of the data model in Fig.UC1.1(b). We have
 ![UC4 Original Model](UC4/UCx4_2.png)
 *Fig.UC1.2. The initial instantiation of the data model in Fig.3(b), consisting of two wall elements and four profile elements.*
 
+We start by applying the SECTION template to instances **wall A** and **wall B** in Fig.UC1.3. The template itself, with the relevant connections, is shown in Fig.UC1.3(a), while the adapted model is shown in Fig.UC1.3(b). We see that the adaptation includes only annotations: one for the instance **wall B** (as *structure.SECTION*), one for attribute **“thermal resistance”** (as *R<sub>sect</sub>*), and one for attribute **“height”** (as *f<sub>sect</sub>*).
+
 ![UC4 Defining a Section](UC4/UCx4_3.png)
 *Fig.UC1.3. Applying the SECTION template to a single existing element.*
 
