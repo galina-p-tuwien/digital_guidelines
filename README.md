@@ -47,10 +47,12 @@ We start by applying the SECTION template to instances **wall A** and **wall B**
 
 The next template application is more complex, because it involves two elements of the existing model (see Fig.UC1.4). The template CELL models homogeneous cells in the construction, which makes instances **p1** to **p4** excellent candidates. However, the template also requires the presence of two attributes, the cell thermal resistance (*R<sub>cell</sub>*) and the design thermal conductivity of the cell’s material (*λ*). In this model, however, those attributes reside in different instances. If we take **p3** as an example, it contains an attribute **“thermal resistance”**, but the attribute **“thermal conductivity”** resides in the instance **massive timber**, which **p3** references.
 
-This results in the template CELL being applied to *three elements*, **p3**, **massive timber**, and the *reference* between **p3** and **massive timber** (see the thick dashed arrows in Fig.UC1.4). As an aside, when template CELL is applied to **p2**, which also references **massive timber**, the application will again include **massive timber**. The reason for this is that each individual template application is a separate element in the application model.
+This results in the template CELL being applied to *three elements*, **p3**, **massive timber**, and the *reference* between **p3** and **massive timber** (see the thick dashed arrows in Fig.UC1.4). As an aside, when template CELL is applied to **p2**, which also references **massive timber**, the application will again include **massive timber**. The reason for this is that each individual template application is a separate element in the application model (see Fig.UC1.9).
 
 ![UC4 Defining a Cell](UC4/UCx4_4.png)
 *Fig.UC1.4. Applying the CELL template to two existing elements.*
+
+So far, we have applied the templates SECTION and CELL, because the initial model contains elements that could be easily adapted. However, to perform the calculations according to ISO 6946, we also need to define layers. Since the initial model doesn’t contain any suitable elements, we will, for the first time, generate them. The data model in Fig.UC1.1(a) provides us with only two types. More suitable for our template is ELEMENT. Therefore, we instantiate it twice as **layer 1** and **layer 2**, and generate the necessary relationships, so that **wall** contains both **layer 1** and **layer 2**, while **layer 1** references **p1** and **p3**, and **layer 2** references **p2** and **p4**. The reason why, e.g., **layer 1** cannot contain **p1** is that it is already contained in **wall A**, and the data model forbids non-exclusive containment.
 
 ![UC4 Defining a Layer](UC4/UCx4_5.png)
 *Fig.UC1.5. Applying the LAYER template by creating new elements and attaching them to existing ones.*
@@ -63,6 +65,9 @@ This results in the template CELL being applied to *three elements*, **p3**, **m
 
 ![UC4 Final Model](UC4/UCx4_8.png)
 *Fig.UC1.8. The final result of applying the template.*
+
+![UC4 Application Model](UC4/UCx4_9.png)
+*Fig.UC1.9. The template application model.*
 
 ### Use Case 2: ISO 6946:2017, Section 6.7.2 applied to a Generic Data Model
 
