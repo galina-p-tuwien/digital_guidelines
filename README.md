@@ -45,6 +45,10 @@ We start by applying the SECTION template to instances **wall A** and **wall B**
 ![UC4 Defining a Section](UC4/UCx4_3.png)
 *Fig.UC1.3. Applying the SECTION template to a single existing element.*
 
+The next template application is more complex, because it involves two elements of the existing model (see Fig.UC1.4). The template CELL models homogeneous cells in the construction, which makes instances **p1** to **p4** excellent candidates. However, the template also requires the presence of two attributes, the cell thermal resistance (*R<sub>cell</sub>*) and the design thermal conductivity of the cell’s material (*λ*). In this model, however, those attributes reside in different instances. If we take **p3** as an example, it contains an attribute **“thermal resistance”**, but the attribute **“thermal conductivity”** resides in the instance **massive timber**, which **p3** references.
+
+This results in the template CELL being applied to *three elements*, **p3**, **massive timber**, and the *reference* between **p3** and **massive timber** (see the thick dashed arrows in Fig.UC1.4). As an aside, when template CELL is applied to **p2**, which also references **massive timber**, the application will again include **massive timber**. The reason for this is that each individual template application is a separate element in the application model.
+
 ![UC4 Defining a Cell](UC4/UCx4_4.png)
 *Fig.UC1.4. Applying the CELL template to two existing elements.*
 
