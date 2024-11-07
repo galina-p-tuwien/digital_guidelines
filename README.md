@@ -66,7 +66,8 @@ So far, we have applied the templates SECTION and CELL, because the initial mode
 ![UC4 Final Model](UC4/UCx4_8.png)
 *Fig.UC1.8. The final result of applying the template.*
 
-![UC4 Application Model](UC4/UCx4_9.png)
+![UC4 Application Model](UC4/UCx4_9small.png)
+
 *Fig.UC1.9. The template application model.*
 
 ### Use Case 2: ISO 6946:2017, Section 6.7.2 applied to a Generic Data Model
