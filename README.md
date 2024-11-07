@@ -35,33 +35,33 @@ In this use case, we have chosen a very simple inhomogeneous construction, as sh
 
 *Fig.UC1.1. The initial situation: (a) the inhomogeneous wall and (b) the data model.*
 
-In Fig.UC1.2 we see the instantiation of the data model in Fig.UC1.1(b). We have a hierarchical structure of elements, enabled by the containment relationship. At the top is instance **wall**, which consists of two parts, **wall A** and **wall B**. **Wall A** is comprised of parts **p1** and **p2**, while **wall B** – of parts **p3** and **p4**. Each part references an instance of type MATERIAL. For example, **p1** references **mineral wool**, and **p2** references **massive timber**. From the viewpoint of the architect, for example, this is enough information to describe the wall. However, if we want to prove that the thermal resistance of the entire construction has been calculated in accordance with ISO6946, we need to apply the relevant templates.
+In Fig.UC1.2 we see the instantiation of the data model in Fig.UC1.1(b). We have a hierarchical structure of elements, enabled by the containment relationship. At the top is instance **wall**, which consists of two parts, **wall A** and **wall B**. **Wall A** is comprised of parts **p1** and **p2**, while **wall B** – of parts **p3** and **p4**. Each part references an instance of type MATERIAL. For example, **p1** references **mineral wool**, and **p2** references **massive timber**. From the viewpoint of the architect, for example, this is enough information to describe the wall. However, if we want to prove that the thermal resistance of the entire construction has been calculated in accordance with ISO 6946, we need to apply the relevant template.
 
 ![UC4 Original Model](UC4/UCx4_2.png)
 *Fig.UC1.2. The initial instantiation of the data model in Fig.3(b), consisting of two wall elements and four profile elements.*
 
-We start by applying the SECTION template to instances **wall A** and **wall B** in Fig.UC1.3. The template itself, with the relevant connections, is shown in Fig.UC1.3(a), while the adapted model is shown in Fig.UC1.3(b). We see that the adaptation includes only annotations: one for the instance **wall B** (as *structure.SECTION*), one for attribute **“thermal resistance”** (as *R<sub>sect</sub>*), and one for attribute **“height”** (as *f<sub>sect</sub>*).
+We start by applying the SECTION template element to instances **wall A** and **wall B** in Fig.UC1.3. The template itself, with the relevant connections, is shown in Fig.UC1.3(a), while the adapted model is shown in Fig.UC1.3(b). We see that the adaptation includes only annotations: one for the instance **wall B** (as *structure.SECTION*), one for attribute **“thermal resistance”** (as *R<sub>sect</sub>*), and one for attribute **“height”** (as *f<sub>sect</sub>*). The application model in Fig.UC1.9, however, includes multiple additional mappings (see entry 2 and its sub-entries). For example, the containment between **wall** and **wall B** is defined as the implementation of the relationship between template element CUMULATIVE and template element SECTION (thin dashed arrow marked as 2.1 in Fig.UC1.3(b)).
 
 ![UC4 Defining a Section](UC4/UCx4_3.png)
-*Fig.UC1.3. Applying the SECTION template to a single existing element.*
+*Fig.UC1.3. Applying the SECTION template element to a single existing element.*
 
-The next template application is more complex, because it involves two elements of the existing model (see Fig.UC1.4). The template CELL models homogeneous cells in the construction, which makes instances **p1** to **p4** excellent candidates. However, the template also requires the presence of two attributes, the cell thermal resistance (*R<sub>cell</sub>*) and the design thermal conductivity of the cell’s material (*λ*). In this model, however, those attributes reside in different instances. If we take **p3** as an example, it contains an attribute **“thermal resistance”**, but the attribute **“thermal conductivity”** resides in the instance **massive timber**, which **p3** references.
+The next step of the template application is more complex, because it involves multiple elements of the existing model (see Fig.UC1.4). The template element CELL models homogeneous cells in the construction, which makes instances **p1** to **p4** excellent candidates. However, CELL also requires the presence of two attributes, the cell thermal resistance (*R<sub>cell</sub>*) and the design thermal conductivity of the cell’s material (*λ*). In this model, however, those attributes reside in different instances. If we take **p3** as an example, it contains an attribute **“thermal resistance”**, but the attribute **“thermal conductivity”** resides in the instance **massive timber**, which **p3** references.
 
-This results in the template CELL being applied to *three elements*, **p3**, **massive timber**, and the *reference* between **p3** and **massive timber** (see the thick dashed arrows in Fig.UC1.4). As an aside, when template CELL is applied to **p2**, which also references **massive timber**, the application will again include **massive timber**. The reason for this is that each individual template application is a separate element in the application model (see Fig.UC1.9).
+This results in the template element CELL being applied to *three elements*, **p3**, **massive timber**, and the *reference* between **p3** and **massive timber** simultaneously (see the thick dashed arrows amrked 5 in Fig.UC1.4, and entry 5 in Fig.UC1.9). As an aside, when template element CELL is applied to **p2**, which also references **massive timber**, the application will again include **massive timber**. The reason for this is that each individual template element application is a separate entry in the application model (compare entries 4 and 5 in Fig.UC1.9).
 
 ![UC4 Defining a Cell](UC4/UCx4_4.png)
-*Fig.UC1.4. Applying the CELL template to two existing elements.*
+*Fig.UC1.4. Applying the CELL template element to two existing elements.*
 
-So far, we have applied the templates SECTION and CELL, because the initial model contains elements that could be easily adapted. However, to perform the calculations according to ISO 6946, we also need to define layers. Since the initial model doesn’t contain any suitable elements, we will, for the first time, generate them. The data model in Fig.UC1.1(a) provides us with only two types. More suitable for our template is ELEMENT. Therefore, we instantiate it twice as **layer 1** and **layer 2**, and generate the necessary relationships, so that **wall** contains both **layer 1** and **layer 2**, while **layer 1** references **p1** and **p3**, and **layer 2** references **p2** and **p4**. The reason why, e.g., **layer 1** cannot contain **p1** is that it is already contained in **wall A**, and the data model forbids non-exclusive containment.
+So far, we have applied the template elements SECTION and CELL, because the initial model contains elements that could be easily adapted. However, to perform the calculations according to ISO 6946, we also need to define layers. Since the initial model doesn’t contain any suitable elements, we will, for the first time, generate them. The data model in Fig.UC1.1(a) provides us with only two types. More suitable for our template is ELEMENT. Therefore, we instantiate it twice as **layer 1** and **layer 2**, and generate the necessary relationships, so that **wall** contains both **layer 1** and **layer 2**, while **layer 1** references **p1** and **p3**, and **layer 2** references **p2** and **p4**. The reason why, e.g., **layer 1** cannot contain **p1** is that it is already contained in **wall A**, and the data model forbids non-exclusive containment.
 
 ![UC4 Defining a Layer](UC4/UCx4_5.png)
-*Fig.UC1.5. Applying the LAYER template by creating new elements and attaching them to existing ones.*
+*Fig.UC1.5. Applying the LAYER template element by creating new elements and attaching them to existing ones.*
 
 ![UC4 Defining the Cumulative](UC4/UCx4_6.png)
-*Fig.UC1.6. Applying the CUMULATIVE template to an existing element and extending it by two further elements.*
+*Fig.UC1.6. Applying the CUMULATIVE template element to an existing element and extending it by two further elements.*
 
 ![UC4 Re-calculations](UC4/UCx4_7.png)
-*Fig.UC1.7. Adding a calculation to fulfil a condition attached to the SECTION template.*
+*Fig.UC1.7. Adding a calculation to fulfil a condition attached to the SECTION template element.*
 
 ![UC4 Final Model](UC4/UCx4_8.png)
 *Fig.UC1.8. The final result of applying the template.*
