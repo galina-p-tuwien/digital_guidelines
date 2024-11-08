@@ -86,6 +86,10 @@ We map template element CUMULATIVE to five model elements simultaneously, the in
 
 *Fig.UC1.9. The template application model.*
 
+![UC4 Updating the Model](UC4/UCx4_10.png)
+
+*Fig.UC1.10. Updating the model after template application: adding a section automatically.*
+
 ### Use Case 2: ISO 6946:2017, Section 6.7.2 applied to a Generic Data Model
 
 The second use case involves the modelling of the wall presented in Fig.1(a). We have chosen a fairly generic data model that could represent the architect’s view. It is shown in the box in Fig.3(a). Abstract type *Element* can have *Data* attached to it.
