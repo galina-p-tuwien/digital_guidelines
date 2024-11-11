@@ -81,6 +81,8 @@ Finally, to comply fully with ISO 6946:2017, Section 6.7.2, we need to perform a
 ![UC4 Re-calculations](UC4/UCx4_7.png)
 *Fig.UC1.7. Adding a calculation to fulfil a condition attached to the SECTION template element.*
 
+The final result of the model’s adaptation to the guideline is shown in Fig.UC1.8. It involves four instantiations of type ELEMENT, **layer 1**, **layer 2**, **environment out**, and **environment in**, including all relationships to already existing instances. In addition to that, all relevant instances and attributes have been annotated, and two conversion procedures have been defined.
+
 ![UC4 Final Model](UC4/UCx4_8.png)
 *Fig.UC1.8. The final result of applying the template.*
 
