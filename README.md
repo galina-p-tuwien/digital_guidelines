@@ -76,6 +76,8 @@ We map template element CUMULATIVE to five model elements simultaneously, the in
 ![UC4 Defining the Cumulative](UC4/UCx4_6.png)
 *Fig.UC1.6. Applying the CUMULATIVE template element to an existing element and extending it by two further elements.*
 
+Finally, to comply fully with ISO 6946:2017, Section 6.7.2, we need to perform a conversion. The reasoning is as follows. In the relevant calculations in the guideline, a layer’s width is considered with its measure unaltered (in this use case, in m), but a section’s height is considered as a *share* of the height of the entire construction under consideration. This is represented by the equation *Condition 1* in Fig.UC1.7. For example, for **wall A**, this means that attribute **“height”**, annotated as *f<sub>sect</sub>*, cannot be taken as it is, as 0.20m, but rather as the share of the height of **wall**, which is 0.50m. This requires a transformation from height in m to a unitless share measure (see equation *Transform 1* in Fig.UC1.7 and entry 10 in Fig.UC1.9) by means of dividing the height of **wall A** by the height of **wall**. The same conversion has to be performed for **wall B**. In this way **wall A's** height of 0.20 m is converted to a 0.40 share, and **wall B's** height of 0.30 m is converted to a 0.60 share of the entire construction.
+
 ![UC4 Re-calculations](UC4/UCx4_7.png)
 *Fig.UC1.7. Adding a calculation to fulfil a condition attached to the SECTION template element.*
 
