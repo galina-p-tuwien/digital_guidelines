@@ -86,7 +86,7 @@ The final result of the model’s adaptation to the guideline is shown in Fig.UC
 ![UC4 Final Model](UC4/UCx4_8.png)
 *Fig.UC1.8. The final result of applying the template.*
 
-![UC4 Application Model](UC4/UCx4_9small.png)
+![UC4 Application Model](UC4/UCx4_9.png)
 
 *Fig.UC1.9. The template application model.*
 
@@ -96,7 +96,7 @@ The final result of the model’s adaptation to the guideline is shown in Fig.UC
 ![UC4 Updating the Model 2](UC4/UCx4_11.png)
 *Fig.UC1.11. Updating the model after template application: adding an independent element.*
 
-![UC4 Application Model Update](UC4/UCx4_12small.png)
+![UC4 Application Model Update](UC4/UCx4_12.png)
 
 *Fig.UC1.12. The template application model: adding a section automatically.*
 
