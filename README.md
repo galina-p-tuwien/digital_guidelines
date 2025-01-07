@@ -139,18 +139,30 @@ In this way, *any* equation linked to the template can be called multiple times 
 
 ### Use Case 2: ISO 6946:2017, Section 6.7.2 applied to a Generic Data Model
 
-The second use case involves the modelling of the wall presented in Fig.1(a). We have chosen a fairly generic data model that could represent the architect’s view. It is shown in the box in Fig.3(a). Abstract type *Element* can have *Data* attached to it.
+The second use case involves the modelling of the wall presented in Fig.1(a). We have chosen a fairly generic data model that could represent the architect’s view. It is shown in the box in Fig.3(a). Abstract type *ELEMENT* can have *DATA* attached to it.
+
+In spite of having more types that Use Case 1, this data model is actually more restrictive. For example, if we want to add cells and sections to a structure consisting only of layers, we can either have a layer as the parent container of a cell (as shown in Fig.UC2.2), or a section as a parent container of the cell, but not both. This is due to the rigid data model that allows only instances of *BUILDING COMPONENT* to contain instances of *LAYER*. Type *DATA* offers an additional hierarchy level below *LAYER*, which enables us to apply template element CELL (**<ins>E4</ins>**). However, all containment relationships are *exclusive*, i.e., no two instances of any of the subtypes of *ELEMENT* (see the abstract root of the inheritance tree in Fig.UC2.1(a)) can contain the same instance of type *DATA*.
 
 ![Class and Object Diagrams](UC/UC1_01b.png)
 *Fig.UC2.1. A generic data model (a) and one possible instantiation (b).*
 
+Fig.UC2.2 demonstrates our initial attempt to apply the template by generating a new instance of type *DATA* for each application of template elements CELL and SECTION. One single application of CELL results in a mapping in the application model between CELL and *six* model elements (labelled as 1 in the figure): **iso6946 cell 3b**, **layer 3**, the reference from **layer 3** to **iso6946 cell 3b**, the reference from **layer 3** to **la3**, **la3**, and the reference from **la3** to **massive timber**. Such complexity can be an indicator of the unsuitability of the template to the model. However, as long as the mapping is possible, the template is still applicable.
+
 ![Adapted Model](UC/UC1_02.png)
 *Fig.UC2.2. The adapted model.*
+
+The next step is the mapping of the containment relationship between LAYER and CELL (marked as 1.1). This is straightforward because it is part of the model elements we generated. Yet the relationship between SECTION and CELL (marked as 1.2 and a question mark) cannot be mapped because the model does not allow non-exclusive containment. For this reason, we employ the annotation mechanism as a work-around. First, we enable the annotation not just of attribute slots, but of individual indices if the slot type is an ordered collection (attribute **"values"** in type *DATA* has the type <code>array of doubles</code>). Second, we define two special annotation symbols, <code>◊</code>, and <code>→</code>, to indicate the owner and target of the relationship, respectively. In this way, for example, instance **section b** can declare its relationship with instances **cell 1b**, **cell 2b**, and **cell 3b** via annotations only (see Fig.UC2.3).
+
+If we look closer, slot **“values”** in **section b** contains five doubles, the first annotated as *R<sub>sect</sub>*, the second as *f<sub>sect</sub>*, as required by template element SECTION, and the last three as <code>◊</code>. These are the ordered ids of the cells contained in **section b**. The same slot **“values”** in **cell 3b**, e.g., contains two doubles. The first is annotated as *R<sub>cell</sub>*, as required by template element CELL, the second as <code>→</code>, marking it as a target, or id, for referencing. Since slot **“values”** in **section b** contains 203.0 annotated as <code>◊</code>, and slot **“values”** in **cell 3b** contains 203.0 annotated as <code>→</code>, the relationship we need can be established by simple equality of doubles.
 
 ![Adapted Model w Connectivity](UC/UC1_03.png)
 *Fig.UC2.3. The adapted model with full connectivity.*
 
+Looking at the adapted model in Fig.UC2.3 we see a near doubling of the model elements. Such situations indicate a poor match between template and model. Of course, in this particular case, the template is not applied across the entire model, just to those parts relevant for ISO 6946. Nevertheless, the cumulative effect of applying multiple templates to an ill-suited model can be a significant size increase.
+
 ### Use Case 3: ISO 6946:2017, Section 6.7.2 applied to an unsuitable model
+
+This use case is even more ill-suited to our template than the previous one. The reason is not the data model itself, rather, it is the instantiation, which reflects the users’ understanding of the modelling task.
 
 ![Wall setup](UC/UC3_00.png)
 *Fig.UC3.1. Wall decomposition: (a) modelling the the inhomogeneous layer, (b) modelling the profiles in the inhomogeneous layer, (c) a typical section, (d) modelling the structure for ISO 6946 for the typical section.*
