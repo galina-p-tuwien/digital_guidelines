@@ -39,16 +39,16 @@ The template depicted in Fig.3 contains the following elements:
 - [x] **<ins>E05</ins>**: adding / removing a LAYER  (Fig.3(b)),
 - [x] **<ins>E06</ins>**: adding / removing a SECTION  (Fig.3(c)),
 - [x] **<ins>E07</ins>**: adding / removing *both* a LAYER and a SECTION  (Fig.3(d)),
-- [x] **<ins>E08</ins>**: calculating *R<sub>tot</sub>* (Fig.3(a), also see equation (5) in ISO 6946:2017, Section 6.7.2.2),
-- [x] **<ins>E09</ins>**: calculating *R<sub>sect</sub>* (Fig.3(b), the *thermal resistance of a section*, see reference to equation (4) and equation (6) in Section 6.7.2.3),
-- [x] **<ins>E10</ins>**: calculating *R<sub>layer</sub>* (Fig.3(c), the *thermal resistance of a layer*, see equation (7) in Section 6.7.2.4),
-- [x] **<ins>E11</ins>**: calculating *R<sub>tot;lower</sub>* (Fig.3(d), the *lower limit of the total thermal resistance of the construction*, see equation (7) and reference to equation (4) in Section 6.7.2.4),
-- [x] **<ins>E12</ins>**: calculating *R<sub>tot;upper</sub>* (Fig.3(e), the *upper limit of the total thermal resistance of the construction*, see equation (6) in Section 6.7.2.3).
+- [x] **<ins>E08</ins>**: calculating *R<sub>cell</sub>* (Fig.3(a), also see equation (3) in ISO 6946:2017, Section 6.7.1.1),
+- [x] **<ins>E09</ins>**: calculating *R<sub>tot</sub>* (Fig.3(a), also see equation (5) in ISO 6946:2017, Section 6.7.2.2),
+- [x] **<ins>E10</ins>**: calculating *R<sub>sect</sub>* (Fig.3(b), the *thermal resistance of a section*, see reference to equation (4) and equation (6) in Section 6.7.2.3),
+- [x] **<ins>E11</ins>**: calculating *R<sub>layer</sub>* (Fig.3(c), the *thermal resistance of a layer*, see equation (7) in Section 6.7.2.4),
+- [x] **<ins>E12</ins>**: calculating *R<sub>tot;lower</sub>* (Fig.3(d), the *lower limit of the total thermal resistance of the construction*, see equation (7) and reference to equation (4) in Section 6.7.2.4),
+- [x] **<ins>E13</ins>**: calculating *R<sub>tot;upper</sub>* (Fig.3(e), the *upper limit of the total thermal resistance of the construction*, see equation (6) in Section 6.7.2.3).
 
 Not depicted in Fig.3 are:
-- [ ] **E13**: the calculation of the error, *R<sub>tot;ratio</sub>* according to Section 6.7.2.1, and
-- [ ] **E14**: the condition that the fractional areas *f<sub>sect</sub>* of all sections should add up to 1 according to Section 6.7.2.2.
-
+- [ ] **E14**: the calculation of the error, *R<sub>tot;ratio</sub>* according to Section 6.7.2.1, and
+- [ ] **E15**: the condition that the fractional areas *f<sub>sect</sub>* of all sections should add up to 1 according to Section 6.7.2.2.
 
 ### Use Case 1: A Step-By-Step Application of ISO 6946:2017, Section 6.7.2
 
@@ -98,7 +98,7 @@ This necessitates the mapping of template element CUMULATIVE to five model eleme
 ![UC4 Defining the Cumulative](UC4/UCx4_6.png)
 *Fig.UC1.6. Applying the CUMULATIVE template element to an existing element and extending it by two further elements.*
 
-Finally, to comply fully with ISO 6946:2017, Section 6.7.2, we need to perform a conversion. The reasoning is as follows. In the relevant calculations in the guideline, a layer’s width is considered with its measure unaltered (in this use case, in m), but a section’s height is considered as a *share* of the height of the entire construction under consideration. This is represented by the equation *Condition 1* in Fig.UC1.7 (see also template element **E14**). For example, for **wall A**, this means that attribute **“height”**, annotated as *f<sub>sect</sub>*, cannot be taken as it is, as 0.20m, but rather as the share of the height of **wall**, which is 0.50m. This requires a transformation from height in m to a unitless share measure (see equation *Transform 1* in Fig.UC1.7 and entry 10 in Fig.UC1.9) by means of dividing the height of **wall A** by the height of **wall**. The same conversion has to be performed for **wall B**. In this way **wall A's** height of 0.20 m is converted to a 0.40 share, and **wall B's** height of 0.30 m is converted to a 0.60 share of the entire construction.
+Finally, to comply fully with ISO 6946:2017, Section 6.7.2, we need to perform a conversion. The reasoning is as follows. In the relevant calculations in the guideline, a layer’s width is considered with its measure unaltered (in this use case, in m), but a section’s height is considered as a *share* of the height of the entire construction under consideration. This is represented by the equation *Condition 1* in Fig.UC1.7 (see also template element **E15**). For example, for **wall A**, this means that attribute **“height”**, annotated as *f<sub>sect</sub>*, cannot be taken as it is, as 0.20m, but rather as the share of the height of **wall**, which is 0.50m. This requires a transformation from height in m to a unitless share measure (see equation *Transform 1* in Fig.UC1.7 and entry 10 in Fig.UC1.9) by means of dividing the height of **wall A** by the height of **wall**. The same conversion has to be performed for **wall B**. In this way **wall A's** height of 0.20 m is converted to a 0.40 share, and **wall B's** height of 0.30 m is converted to a 0.60 share of the entire construction.
 
 ![UC4 Re-calculations](UC4/UCx4_7.png)
 *Fig.UC1.7. Adding a calculation to fulfil a condition attached to the SECTION template element.*
@@ -124,7 +124,7 @@ In both cases we end up with a new instance **wall C**. However, in the first ca
 ![UC4 Application Model Update](UC4/UCx4_12.png)
 *Fig.UC1.12. The template application model: adding a section automatically.*
 
-When listing all separate template elements we mentioned quite a few calculations (e.g., **<ins>E08</ins>** to **E13**), but have not addressed them in any of the steps we just described. The reason for this is that the mappings and annotations recorded in our application model, together with the internal template mappings depicted in Fig.3, are sufficient to define the input and output of each individual call of any of those calculations completely automatically, without any further input from the user.
+When listing all separate template elements we mentioned quite a few calculations (e.g., **<ins>E08</ins>** to **E15**), but have not addressed them in any of the steps we just described. The reason for this is that the mappings and annotations recorded in our application model, together with the internal template mappings depicted in Fig.3, are sufficient to define the input and output of each individual call of any of those calculations completely automatically, without any further input from the user.
 
 For example, let us examine **<ins>E8</ins>**, the calculation of *R<sub>sect</sub>*, the thermal resistance of a section, in **wall B**. The formalisation of this calculation from the relevant equation in ISO 6946 is discussed at length in the paper. As input, this calculation requires the thermal resistance *R<sub>cell</sub>* of all cells contained in the section, in this case **p3** and **p4**, and the internal and external surface resistance, *R<sub>si</sub>* and *R<sub>se</sub>*, respectively. 
 
@@ -156,13 +156,13 @@ The second use case involves the modelling of the wall presented in Fig.1(a). We
 *Fig.UC3.1. Wall decomposition: (a) modelling the the inhomogeneous layer, (b) modelling the profiles in the inhomogeneous layer, (c) a typical section, (d) modelling the structure for ISO 6946 for the typical section.*
 
 ![Class and Object Diagrams](UC/UC3_01.png)
-*Fig.UC3.1. The wall construction (a), the corresponding data model (b) and one possible instantiation (c).*
+*Fig.UC3.2. The wall construction (a), the corresponding data model (b) and one possible instantiation (c).*
 
 ![Adapted Model](UC/UC3_02.png)
-*Fig.UC3.2. Model adaptation: step 1.*
+*Fig.UC3.3. Model adaptation: step 1.*
 
 ![Full Adapted Model](UC/UC3_03.png)
-*Fig.UC3.3. Model adaptation: step 2.*
+*Fig.UC3.4. Model adaptation: step 2.*
 
 ### Use Case 4: ISO 6946:2017, Section 6.7.2 applied to an IFC Model
 
