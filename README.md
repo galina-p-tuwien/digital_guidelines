@@ -164,11 +164,17 @@ Looking at the adapted model in Fig.UC2.3 we see a near doubling of the model el
 
 This use case is even more ill-suited to our template than the previous one. The reason is not the data model itself, rather, it is the instantiation, which reflects the users’ understanding of the modelling task.
 
+Fig.UC3.1 shows a horizontal section through the modelled wall. The initial model decomposes the wall into profiles **p1** to **p5** (see Fig.UC3.1(b)) that are homogeneous in terms of material and play different roles in the wall’s structure. Additionally, the outermost layers of the wall are not included in the model at all. We cannot describe this model as “wrong” since its purpose is not known to us. We could say that it has some unexpected features. The reason for this becomes clear when we consider what portion of the wall needs to be modelled for a calculation of the thermal transmittance according to ISO 6946 (see Fig.UC3.1(c)). The decomposition we would need is so different from the one in the initial model that we could describe it as incompatible (compare Fig.UC3.1(b) and (d)).
+
 ![Wall setup](UC/UC3_00.png)
 *Fig.UC3.1. Wall decomposition: (a) modelling the the inhomogeneous layer, (b) modelling the profiles in the inhomogeneous layer, (c) a typical section, (d) modelling the structure for ISO 6946 for the typical section.*
 
+Fig.UC3.2 shows the initial model consisting of one instance of *BUILDING COMPONENT*, five instances of *PROFILE*, and two instances of *MATERIAL* (Fig.UC3.2(c)).
+
 ![Class and Object Diagrams](UC/UC3_01.png)
 *Fig.UC3.2. The wall construction (a), the corresponding data model (b) and one possible instantiation (c).*
+
+The template application in this case doesn’t need to force two contradictory decompositions together. Instead, we opted for defining a parallel instantiation linked to the original elements of the model to indicate overlap. Fig.UC3.3 and Fig.UC3.4 demonstrate this. To the initial 8 instances we added 4 *DATA* instances for the layers, 4 for the sections, and 16 for the cells. While this produces a model that is 375% the size of the original, it need not always be the case. The original modelled a very small portion of the wall. In reality, such walls can easily contain upwards of 20 structural profiles alone, while the portion modelled for the calculation of the thermal resistance remains the same, because it is only *representative of the wall*, not a *model of the entire wall*. This means that in real world situations the resulting model can vary between 150% and 200% the size of the original.
 
 ![Adapted Model](UC/UC3_02.png)
 *Fig.UC3.3. Model adaptation: step 1.*
@@ -176,13 +182,23 @@ This use case is even more ill-suited to our template than the previous one. The
 ![Full Adapted Model](UC/UC3_03.png)
 *Fig.UC3.4. Model adaptation: step 2.*
 
+However, this is not the only challenge we face. After the adaptation we have two separate models of the same portion of the wall which have to be kept synchronized through all subsequent model updates. This necessitates the establishment of additional relationships in the model, as shown in Fig.UC3.4. For example, instance **p3** (representing the insulation) needs to reference four cells, **2a**, **2b**, **2d**, and **3a**, while instance **p4** needs to reference cell **2c**, and instance **p5** needs to reference three cells, **3b**, **3c**, and **3d**. In addition, the application model has to contain rules for adapting to size and material changes, as well as for the deletion of addition of new *PROFILE* instances.
+
+In conclusion, we still managed to apply the template, even to a model as ill-suited as this, but had to duplicate a part of the model. This is resorting to the strategy many BIM users employ when faced with the multiple requirements on digital modelling in different domains, *something we set out to avoid*. In is no exaggeration to say that repeating this strategy for multiple guidelines could quickly descend into chaos.
+
 ### Use Case 4: ISO 6946:2017, Section 6.7.2 applied to an IFC Model
+
+For the final use case we chose the Industry Foundation Classes (IFC) standard. Since IFC offers the entity *IfcMaterialLayer* it might be tempting to employ it to build a layered construction. However, inhomogeneity in a layer cannot be represented due to the admissible multiplicity of the relationship between *IfcMaterialLayer* and *IfcMaterial* (see Fig.UC4.1).
 
 ![Typical IFC Wall](UC/UC2_01.png)
 *Fig.UC4.1. An IFC wall with a layered structure.*
 
+An inhomogeneous layer can be represented only by a collection of *IfcMaterialProfile* instances, as shown in Fig.UC4.2. Here, profiles with arbitrarily complex geometry, but homogeneous in terms of material, can be declared as part of a *IfcMaterialProfileSet*, which can be assigned to a wall, e.g., via the relationship *IfcRelAssociatesMaterial* and the entity *IfcMaterialProfileSetUsage*. However, IFC does not allow for ordering or for referencing of neighboring profiles.
+
 ![IFC Wall w Profiles](UC/UC2_02.png)
 *Fig.UC4.2. An IFC wall with a profile structure.*
+
+*IfcMaterialProfileSet* and *IfcMaterialProfile* instances cannot build the necessary data structure for the application of template elements like LAYER or SECTION either. On the other hand, IFC offers a very flexible generic way of modelling via placeholders, such as entity *IfcBuildingElementProxy*, and custom property sets (in Fig.UC4.3 property set instances have a type with the prefix PSET_, e.g., **1a**:PSET_C_CELL). 
 
 ![IFC Wall ISO 6946](UC/UC2_03.png)
 *Fig.UC4.3. An IFC wall adapted for calculating its thermal conductivity according to ISO 6946:2017, Section 6.7.2.*
