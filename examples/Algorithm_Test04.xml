@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE alg:AlgorithmLibrary SYSTEM "DTD_Partial_Algo2.dtd">
+<alg:AlgorithmLibrary xmlns:alg="https://github.com/galina-p-tuwien/digital_guidelines/algorithm"
+						xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+						xsi:schemaLocation="https://github.com/galina-p-tuwien/digital_guidelines/algorithm XML_Schema_Algo2.xsd">
+
+	<alg:Algorithms>
+		<alg:Algorithm name="AreaOfRect" id="length_based.AreaOfRect">
+			<alg:Inputs>
+				<alg:Input name="length" id="length_based.length" semantic_tag="ISO.XYZ.a" unit="m">
+					<alg:Type base_type="Decimal" multiplicity="Single"/>
+				</alg:Input>
+				<alg:Input name="width" id="length_based.width" semantic_tag="ISO.XYZ.b" unit="m">
+					<alg:Type base_type="Decimal" multiplicity="Single"/>
+				</alg:Input>
+			</alg:Inputs>
+			<alg:Outputs>
+				<alg:Output name="area" id="length_based.area" semantic_tag="ISO.XYZ.A" unit="m²">
+					<alg:Type base_type="Decimal" multiplicity="Single"/>
+				</alg:Output>
+			</alg:Outputs>
+		</alg:Algorithm>
+		
+	</alg:Algorithms>
+
+
+	<alg:Connections>
+		
+	</alg:Connections>
+
+	
+	
+</alg:AlgorithmLibrary>

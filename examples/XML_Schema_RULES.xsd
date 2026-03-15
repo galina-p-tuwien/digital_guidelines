@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="https://github.com/galina-p-tuwien/digital_guidelines/rules"
+		   elementFormDefault="qualified"
+			xmlns="http://tempuri.org/XMLSchema.xsd"
+			xmlns:mstns="http://tempuri.org/XMLSchema.xsd"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		   xmlns:rls="https://github.com/galina-p-tuwien/digital_guidelines/rules">
+
+	<xs:complexType name="RuleDeclaration">
+		<xs:attribute name="name" type="xs:string" use="optional"/>
+		<xs:attribute name="xpath" type="xs:string" use="required"/>
+		<xs:attribute name="expected" type="xs:string" use="required"/>
+	</xs:complexType>
+
+	<xs:complexType name="RuleDeclarations">
+		<xs:sequence minOccurs="1" maxOccurs="unbounded">
+			<xs:element name="Rule" type="rls:RuleDeclaration" nillable="false"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="Rules" type="rls:RuleDeclarations" nillable="false">
+		<xs:unique name="UniqueSemantics">
+			<xs:selector xpath="./rls:Rule"/>
+			<xs:field xpath="@xpath"/>
+		</xs:unique>
+	</xs:element>
+		
+</xs:schema>

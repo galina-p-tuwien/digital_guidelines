@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE alg:AlgorithmLibrary SYSTEM "DTD_Partial_Algo2.dtd">
+<alg:AlgorithmLibrary xmlns:alg="https://github.com/galina-p-tuwien/digital_guidelines/algorithm"
+				  xmlns:xi="http://www.w3.org/2001/XInclude"
+				  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				  xsi:schemaLocation="https://github.com/galina-p-tuwien/digital_guidelines/algorithm XML_Schema_Algo2.xsd">
+
+    <alg:Algorithms>
+        <alg:Algorithm id="ISO.6946.Section.6.5.2.EQ1" name="Thermal transmittance">
+            <alg:Inputs>
+                <alg:Input id="ISO.6946.Section.6.5.2.EQ1.R_tot" name="total thermal resistance"
+                semantic_tag="ISO.6946:2017.Section.6.5.2.R_tot" unit="m²K/W">
+                    <alg:Type base_type="Double" multiplicity="Single"/>
+                </alg:Input>
+            </alg:Inputs>
+            <alg:Outputs>
+                <alg:Output id="ISO.6946.Section.6.5.2.EQ1.U" name="thermal transmittance" 
+                semantic_tag="ISO.6946:2017.Section.4.1.U" unit="W/(m²K)">
+                    <alg:Type base_type="Double" multiplicity="Single"/>
+                </alg:Output>
+            </alg:Outputs>
+        </alg:Algorithm>
+
+        <alg:Algorithm id="ISO.6946.Section.6.7.1.1.EQ3" name="Thermal resistance of homogeneous layers">
+            <alg:Inputs>
+                <alg:Input id="ISO.6946.Section.4.1.d" name="layer thickness" semantic_tag="ISO.6946:2017.Section.4.1.d" unit="m">
+                    <alg:Type base_type="Double" multiplicity="Single"/>
+                </alg:Input>
+                <alg:Input id="ISO.6946.Section.4.1.λ" name="design thermal conductivity" semantic_tag="ISO.6946:2017.Section.4.1.λ" unit="W/(mK)">
+                    <alg:Type base_type="Double" multiplicity="Single"/>
+                </alg:Input>
+            </alg:Inputs>
+            <alg:Outputs>
+                <alg:Output id="ISO.6946.Section.4.1.R" name="thermal resistance" semantic_tag="ISO.6946:2017.Section.4.1.R" unit="m²K/W">
+                    <alg:Type base_type="Double" multiplicity="Single"/>
+                </alg:Output>
+            </alg:Outputs>
+        </alg:Algorithm>
+
+        <alg:Algorithm id="ISO.6946.Section.6.7.1.2.EQ4" name="Total thermal resistance">
+            <alg:Inputs>
+                <alg:Input id="ISO.6946.Section.6.3.R_si" name="internal surface resistance" semantic_tag="ISO.6946:2017.Section.6.3.R_si" unit="m²K/W">
+                    <alg:Type base_type="Double" multiplicity="Single"/>
+                </alg:Input>
+                <alg:Input id="ISO.6946.Section.6.3.R_se" name="external surface resistance" semantic_tag="ISO.6946:2017.Section.6.3.R_se" unit="m²K/W">
+                    <alg:Type base_type="Double" multiplicity="Single"/>
+                </alg:Input>
+                <alg:Input id="ISO.6946.Section.6.7.1.2.EQ4.R_i" name="thermal resistances" semantic_tag="ISO.6946:2017.Section.4.1.R" unit="m²K/W">
+                    <alg:Type base_type="Double" multiplicity="Array"/>
+                </alg:Input>
+            </alg:Inputs>
+            <alg:Outputs>
+                <alg:Output id="ISO.6946.Section.6.7.1.2.EQ4.R_tot" name="total thermal resistance" semantic_tag="ISO.6946:2017.Section.6.5.2.R_tot" unit="m²K/W">
+                    <alg:Type base_type="Double" multiplicity="Single"/>
+                </alg:Output>
+            </alg:Outputs>
+        </alg:Algorithm>
+
+    </alg:Algorithms>
+
+    <alg:Connections>
+        <alg:Connection source_algorithm="ISO.6946.Section.6.7.1.2.EQ4" source_output="ISO.6946.Section.6.7.1.2.EQ4.R_tot" 
+                        target_algorithm="ISO.6946.Section.6.5.2.EQ1" tagret_input="ISO.6946.Section.6.5.2.EQ1.R_tot" />
+        <alg:Connection source_algorithm="ISO.6946.Section.6.7.1.1.EQ3" source_output="ISO.6946.Section.4.1.R" 
+                        target_algorithm="ISO.6946.Section.6.7.1.2.EQ4" tagret_input="ISO.6946.Section.6.7.1.2.EQ4.R_i" />
+    </alg:Connections>
+
+</alg:AlgorithmLibrary>

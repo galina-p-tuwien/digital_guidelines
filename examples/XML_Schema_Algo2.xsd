@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="https://github.com/galina-p-tuwien/digital_guidelines/algorithm"
+		   elementFormDefault="qualified"
+			xmlns="http://tempuri.org/XMLSchema.xsd"
+			xmlns:mstns="http://tempuri.org/XMLSchema.xsd"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		   xmlns:alg="https://github.com/galina-p-tuwien/digital_guidelines/algorithm"
+		   xmlns:xi="http://www.w3.org/2001/XInclude">
+
+		   <xs:import schemaLocation="http://www.w3.org/2001/XInclude.xsd" namespace="http://www.w3.org/2001/XInclude"/>
+	
+	<xs:simpleType name="ElementaryTypeDeclaration">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Decimal"/>
+			<xs:enumeration value="Double"/>
+			<xs:enumeration value="String"/>
+			<xs:enumeration value="Boolean"/>
+			<xs:enumeration value="Object"/>
+			<xs:enumeration value="Void"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Multiplicity">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Single"/>
+			<xs:enumeration value="Array" />
+			<xs:enumeration value="Matrix_Col_Major"/>
+			<xs:enumeration value="Matrix_Row_Major"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="TypeDeclaration">
+		<xs:attribute name="base_type" type="alg:ElementaryTypeDeclaration" use="required"/>
+		<xs:attribute name="multiplicity" type="alg:Multiplicity" default="Single"/>
+	</xs:complexType>
+
+	<xs:complexType name="VariableDeclaration">
+		<xs:sequence minOccurs="1" maxOccurs="1">
+			<xs:element name="Type" type="alg:TypeDeclaration" nillable="false"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:ID" use="required"/>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+		<xs:attribute name="unit" type="xs:string" use="required"/>
+		<xs:attribute name="semantic_tag" type="xs:string" use="optional"/>
+		<xs:attribute name="reference" type="xs:IDREF" use="optional"/>
+		<xs:attribute name="is_optional" type="xs:boolean" use="optional" default="false"/>
+	</xs:complexType>
+	
+	<xs:complexType name="Outputs">
+		<xs:sequence minOccurs="1" maxOccurs="unbounded">
+			<xs:element name="Output" type="alg:VariableDeclaration"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Inputs">
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="Input" type="alg:VariableDeclaration"/>
+		</xs:sequence>
+	</xs:complexType>
+	 
+	
+	<xs:complexType name="AlgorithmSignature">
+		<xs:sequence>
+			<xs:element name="Inputs" type="alg:Inputs"/>
+			<xs:element name="Outputs" type="alg:Outputs"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:ID" use="required"/>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+	</xs:complexType>
+
+	<xs:complexType name="AlgorithmConnection">
+		<xs:attribute name="source_algorithm" type="xs:IDREF" use="required"/>
+		<xs:attribute name="source_output" type="xs:IDREF" use="required"/>
+		<xs:attribute name="target_algorithm" type="xs:IDREF" use="required"/>
+		<xs:attribute name="tagret_input" type="xs:IDREF" use ="required"/>
+		<xs:attribute name="conversion_factor" type="xs:decimal" default="1"/>
+	</xs:complexType>
+
+	
+	<xs:complexType name="AlgorithmCollection">
+		<xs:sequence>
+			<xs:sequence minOccurs="1" maxOccurs="unbounded">
+				<xs:element name="Algorithm" type="alg:AlgorithmSignature"/>
+			</xs:sequence>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="xi:include"/>
+			</xs:sequence>
+		</xs:sequence>		
+	</xs:complexType>
+
+	<xs:complexType name="AlgorithmConnections">
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="Connection" type="alg:AlgorithmConnection"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="AlgorithmLibrary">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Algorithms" type="alg:AlgorithmCollection"/>
+				<xs:element name="Connections" type="alg:AlgorithmConnections"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="optional"/>
+			<xs:attribute name="source" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	
+</xs:schema>

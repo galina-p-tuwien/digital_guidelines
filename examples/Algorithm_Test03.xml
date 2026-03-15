@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE alg:AlgorithmLibrary SYSTEM "DTD_Partial_Algo2.dtd">
+<alg:AlgorithmLibrary xmlns:alg="https://github.com/galina-p-tuwien/digital_guidelines/algorithm"
+				  xmlns:xi="http://www.w3.org/2001/XInclude"
+				  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				  xsi:schemaLocation="https://github.com/galina-p-tuwien/digital_guidelines/algorithm XML_Schema_Algo2.xsd">
+
+	<alg:Algorithms>
+		<alg:Algorithm name="VolumeOfBox" id="length_based.VolumeOfBox">
+			<alg:Inputs>
+				<alg:Input name="baseArea" id="length_based.baseArea" semantic_tag="ISO.XYZ.A" unit="m²">
+					<alg:Type base_type="Decimal" multiplicity="Single"/>
+				</alg:Input>
+				<alg:Input name="height" id="length_based.height" semantic_tag="ISO.XYZ.h" unit="m">
+					<alg:Type base_type="Decimal" multiplicity="Single"/>
+				</alg:Input>
+			</alg:Inputs>
+			<alg:Outputs>
+				<alg:Output name="volume" id="length_based.volume" semantic_tag="ISO.XYZ.V" unit="m³">
+					<alg:Type base_type="Decimal" multiplicity="Single"/>
+				</alg:Output>
+			</alg:Outputs>
+		</alg:Algorithm>
+
+		<!-- <xi:include href="Algorithm_TestXInclude.xml" xpointer="x">
+			<xi:fallback></xi:fallback>
+		</xi:include> -->
+
+		
+		<xi:include href="Algorithm_Test04.xml" xpointer="length_based.AreaOfRect">
+			<xi:fallback></xi:fallback>
+		</xi:include>
+		
+		<!-- not supported!
+		<xi:include href="Algorithm_Test04.xml" xpointer="xmlns(alg=https://github.com/galina-p-tuwien/digital_guidelines/algorithm) xpointer(//alg:Algorithm)">
+			<xi:fallback></xi:fallback>
+		</xi:include>
+		-->
+
+	</alg:Algorithms>
+
+
+	<alg:Connections>
+		
+		<alg:Connection source_algorithm="length_based.AreaOfRect" source_output="length_based.area" 
+					    target_algorithm="length_based.VolumeOfBox" tagret_input="length_based.baseArea" />
+
+	</alg:Connections>
+	
+</alg:AlgorithmLibrary>

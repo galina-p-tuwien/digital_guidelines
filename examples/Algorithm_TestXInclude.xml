@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE foo [
+  <!ELEMENT foo (bar)>
+  <!ELEMENT bar (#PCDATA)>
+  <!ATTLIST bar id ID #IMPLIED>
+]>
+<foo>
+    <bar id="x">
+
+    </bar>
+</foo>

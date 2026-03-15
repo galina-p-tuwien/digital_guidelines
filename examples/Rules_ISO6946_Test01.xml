@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rls:Rules xmlns:rls="https://github.com/galina-p-tuwien/digital_guidelines/rules"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="https://github.com/galina-p-tuwien/digital_guidelines/rules XML_Schema_RULES.xsd">
+	
+    <rls:Rule name="area" 
+            xpath="//*[@semantic_tag='ISO.6946:2017.Section.4.1.A']/@unit" expected="m²"/>
+	<rls:Rule name="thickness" 
+            xpath="//*[@semantic_tag='ISO.6946:2017.Section.4.1.d']/@unit" expected="m"/>
+	<rls:Rule name="surface coefficient of heat transfer"
+            xpath="//*[@semantic_tag='ISO.6946:2017.Section.4.1.h']/@unit" expected="W/(m²K)"/>
+	<rls:Rule name="ventilation rate"
+            xpath="//*[@semantic_tag='ISO.6946:2017.Section.4.1.n']/@unit" expected="1/h"/>
+	<rls:Rule name="thermal resistance"
+            xpath="//*[@semantic_tag='ISO.6946:2017.Section.4.1.R']/@unit" expected="m²K/W"/>
+	<rls:Rule name="thermal transmittance"
+            xpath="//*[@semantic_tag='ISO.6946:2017.Section.4.1.U']/@unit" expected="W/(m²K)"/>
+	<rls:Rule name="volume"
+            xpath="//*[@semantic_tag='ISO.6946:2017.Section.4.1.V']/@unit" expected="m³"/>
+    <rls:Rule name="design thermal conductivity"
+            xpath="//*[@semantic_tag='ISO.6946:2017.Section.4.1.λ']/@unit" expected="W/(mK)" />
+
+
+    <rls:Rule name="external surface resistance"
+            xpath="//*[@semantic_tag='ISO.6946:2017.Section.6.3.R_se']/@unit" expected="m²K/W" />
+    <rls:Rule name="internal surface resistance"
+            xpath="//*[@semantic_tag='ISO.6946:2017.Section.6.3.R_si']/@unit" expected="m²K/W" />
+
+    <rls:Rule name="total thermal resistance"
+            xpath="//*[@semantic_tag='ISO.6946:2017.Section.6.5.2.R_tot']/@unit" expected="m²K/W" />
+</rls:Rules>
