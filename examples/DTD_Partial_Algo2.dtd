@@ -1,0 +1,40 @@
+<!ELEMENT alg:AlgorithmLibrary (alg:Algorithms, alg:Connections)>
+<!ATTLIST alg:AlgorithmLibrary xmlns:alg CDATA "">
+<!ATTLIST alg:AlgorithmLibrary xmlns:xi CDATA #IMPLIED>
+<!ATTLIST alg:AlgorithmLibrary xmlns:xsi CDATA "">
+<!ATTLIST alg:AlgorithmLibrary xsi:schemaLocation CDATA "">
+
+<!ELEMENT alg:Algorithms (alg:Algorithm*, xi:include*)>
+<!ELEMENT alg:Connections (alg:Connection*)>
+
+<!ELEMENT alg:Algorithm (alg:Inputs, alg:Outputs)>
+<!ATTLIST alg:Algorithm name CDATA "">
+                <!ATTLIST alg:Algorithm id ID #IMPLIED>
+<!ELEMENT alg:Inputs (alg:Input+)>
+<!ELEMENT alg:Input (alg:Type)>
+<!ATTLIST alg:Input name CDATA #REQUIRED>
+<!ATTLIST alg:Input id ID #IMPLIED>
+<!ATTLIST alg:Input semantic_tag CDATA #REQUIRED>
+<!ATTLIST alg:Input unit CDATA #REQUIRED>
+<!ELEMENT alg:Outputs (alg:Output+)>
+<!ELEMENT alg:Output (alg:Type)>
+<!ATTLIST alg:Output name CDATA #REQUIRED>
+<!ATTLIST alg:Output id ID #IMPLIED>
+<!ATTLIST alg:Output semantic_tag CDATA #REQUIRED>
+<!ATTLIST alg:Output unit CDATA #REQUIRED>
+
+<!ELEMENT alg:Type EMPTY>
+<!ATTLIST alg:Type base_type CDATA #REQUIRED>
+<!ATTLIST alg:Type multiplicity CDATA #REQUIRED>
+<!ATTLIST alg:Type base_type CDATA #REQUIRED>
+
+<!ELEMENT alg:Connection EMPTY>
+<!ATTLIST alg:Connection source_algorithm CDATA #REQUIRED>
+<!ATTLIST alg:Connection source_output CDATA #REQUIRED>
+<!ATTLIST alg:Connection target_algorithm CDATA #REQUIRED>
+<!ATTLIST alg:Connection tagret_input CDATA #REQUIRED>
+
+<!ELEMENT xi:include (xi:fallback)>
+<!ATTLIST xi:include href CDATA #REQUIRED>
+<!ATTLIST xi:include xpointer CDATA #REQUIRED>
+<!ELEMENT xi:fallback EMPTY>
