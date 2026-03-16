@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="https://www.bipm.org/en/"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/XMLSchema.xsd"
+    xmlns:mstns="http://tempuri.org/XMLSchema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:siu="https://www.bipm.org/en/"
+>
+	<xs:simpleType name="BaseType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="m"/> <!-- length in meters -->
+			<xs:enumeration value="g"/> <!-- weight in grams -->
+			<xs:enumeration value="s"/> <!-- time in seconds -->
+			<xs:enumeration value="A"/> <!-- electrical current in amperes -->
+			<xs:enumeration value="K"/> <!-- thermodynamic temperature in degrees kelvin -->
+			<xs:enumeration value="mol"/> <!-- amount of substance in moles -->
+			<xs:enumeration value="cd"/> <!-- luminous intensity in candelas -->
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="SIUnit">
+		<xs:sequence minOccurs="7" maxOccurs="7">
+			<xs:element name="entry" type="siu:SIUnitEntry" nillable="false"/>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+		<xs:attribute name="conversion" type="xs:string" use="optional"/>
+	</xs:complexType>
+
+	<xs:complexType name="SIUnitEntry">
+		<xs:sequence>
+			<xs:element name =" base" type="xs:integer"/>
+			<xs:element name = "exponent" type="siu:Exponent"/>
+		</xs:sequence>
+		<xs:attribute name="name" type="siu:BaseType" use="required"/>
+		<xs:attribute name="conversion_factor" type="xs:double" default="1.0"/>
+	</xs:complexType>
+
+	<xs:complexType name="Exponent">
+		<xs:choice>
+			<xs:element name="exa" type="xs:integer" fixed="18"/>
+			<xs:element name="peta" type="xs:integer" fixed="15"/>
+			<xs:element name="tera" type="xs:integer" fixed="12"/>
+			<xs:element name="giga" type="xs:integer" fixed="9"/>
+			<xs:element name="mega" type="xs:integer" fixed="6"/>
+			<xs:element name="kilo" type="xs:integer" fixed="3"/>
+			<xs:element name="hecto" type="xs:integer" fixed="2"/>
+			<xs:element name="deca" type="xs:integer" fixed="1"/>
+			<xs:element name="NULL" type="xs:integer" fixed="0"/>
+			<xs:element name="deci" type="xs:integer" fixed="-1"/>
+			<xs:element name="centi" type="xs:integer" fixed="-2"/>
+			<xs:element name="milli" type="xs:integer" fixed="-3"/>
+			<xs:element name="micro" type="xs:integer" fixed="-6"/>
+			<xs:element name="nano" type="xs:integer" fixed="-9"/>
+			<xs:element name="pico" type="xs:integer" fixed="-12"/>
+			<xs:element name="femto" type="xs:integer" fixed="-15"/>
+			<xs:element name="atto" type="xs:integer" fixed="-18"/>
+		</xs:choice>
+	</xs:complexType>
+	
+	<!-- UNIT -->
+	<xs:complexType name="StandardUnit">
+		<xs:sequence>
+			<xs:element name="unit" type="siu:SIUnit" minOccurs="1" maxOccurs="1">
+				<xs:unique name="BaseEntries">
+					<xs:selector xpath="./siu:entry"/>
+					<xs:field xpath="@name"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="unit_id" type="xs:NCName" use="required"/>
+		<xs:attribute name="Guid" type="xs:string" use="required"/>
+		<xs:attribute name="description" type="xs:string" use="optional"/>
+		<xs:attribute name="source" type="xs:string" use="optional"/>
+		<xs:attribute name="id" type="xs:ID" use="optional"/>
+	</xs:complexType>
+	
+</xs:schema>
