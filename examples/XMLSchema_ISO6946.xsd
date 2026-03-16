@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="https://github.com/galina-p-tuwien/digital_guidelines"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/XMLSchema.xsd"
+    xmlns:mstns="http://tempuri.org/XMLSchema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:gdl="https://github.com/galina-p-tuwien/digital_guidelines"
+    xmlns:siu="https://www.bipm.org/en/"
+>
+	<xs:import namespace="https://www.bipm.org/en/"
+           schemaLocation="XMLSchema_SIU.xsd"/>
+	
+	<xs:complexType name="Cumulative">
+		<xs:sequence>
+			<xs:element name="R_si" type="gdl:ValueWSIUnit" minOccurs ="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="R_se" type="gdl:ValueWSIUnit" minOccurs ="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="R_tot" type="gdl:ValueWSIUnit" minOccurs ="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="R_tot_upper" type="gdl:ValueWSIUnit" minOccurs ="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="R_tot_lower" type="gdl:ValueWSIUnit" minOccurs ="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="sections" type="xs:IDREFS" minOccurs="1" maxOccurs="unbounded" nillable="false"/>
+			<xs:element name="layers" type="xs:IDREFS" minOccurs="1" maxOccurs="unbounded" nillable="false"/>
+		</xs:sequence>
+		<xs:attribute name="Guid" type="xs:string" use="required"/>		
+	</xs:complexType>
+
+	<xs:complexType name="Cell" xmlns="gdl">
+		<xs:sequence>
+			<xs:element name="R_cell" type="gdl:ValueWSIUnit" minOccurs ="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="lambda" type="gdl:ValueWSIUnit" minOccurs ="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="lambda_ref" xmlns="http://www.w3.org/1999/xlink" minOccurs="0" maxOccurs="1" nillable="true"/> <!-- just a test -->
+		</xs:sequence>
+		<xs:attribute name="Guid" type="xs:string" use="required"/>
+		<xs:attribute name="id" type="xs:ID" use="required"/>
+		<xs:attribute name="section_ref" type="xs:NCName" use="required"/>
+		<xs:attribute name="layer_ref" type="xs:NCName" use="required"/>
+		
+	</xs:complexType>
+
+	<xs:complexType name="Section">
+		<xs:sequence>
+			<xs:element name="R_sect" type="gdl:ValueWSIUnit" minOccurs ="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="f_sect" type="gdl:ValueWSIUnit" minOccurs ="1" maxOccurs="1" nillable="false"/>
+		</xs:sequence>
+		<xs:attribute name="Guid" type="xs:string" use="required"/>
+		<xs:attribute name="id" type="xs:ID" use="required"/>
+		<xs:attribute name="num" type="xs:NCName" use="required"/>
+	</xs:complexType>
+
+	<xs:complexType name="Layer">
+		<xs:sequence>
+			<xs:element name="R_layer" type="gdl:ValueWSIUnit" minOccurs ="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="d_layer" type="gdl:ValueWSIUnit" minOccurs ="1" maxOccurs="1" nillable="false"/>
+		</xs:sequence>
+		<xs:attribute name="Guid" type="xs:string" use="required"/>
+		<xs:attribute name="id" type="xs:ID" use="required"/>
+		<xs:attribute name="num" type="xs:NCName" use="required"/>
+	</xs:complexType>
+	
+	<!-- units -->
+	<xs:complexType name="ValueWSIUnit">
+		<xs:sequence>
+			<xs:element name="value" type="xs:double" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="unit" type="xs:NCName" use="required"/>
+	</xs:complexType>
+	
+	<!-- Unit Library -->
+
+	<xs:complexType name="UnitLibrary">
+		<xs:sequence>
+			<xs:element name="Unit" type="siu:StandardUnit" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="ISO6946_Unit_Library" type="gdl:UnitLibrary" nillable="true">
+		<xs:unique name="UnitEntries">
+			<xs:selector xpath="./gdl:Unit"/>
+			<xs:field xpath="@unit_id"/>
+		</xs:unique>
+	</xs:element>
+	
+	<!-- Minimal 1x1 Template -->
+
+	<xs:complexType name ="GridA1">
+		<xs:sequence>			
+			<xs:element name="Cell" type="gdl:Cell"  minOccurs ="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="Section" type="gdl:Section"  minOccurs ="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="Layer" type="gdl:Layer"  minOccurs ="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="MinimalTemplate" type="gdl:Cumulative" minOccurs ="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="Unit" type="siu:StandardUnit" nillable="true" minOccurs="0" maxOccurs="unbounded"/>					
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="Grid_1x1" type="gdl:GridA1" nillable="true">
+		<!-- 
+		<xs:key name="cellKey">
+			<xs:selector xpath="./gdl:Cell"/>
+			<xs:field xpath="@id"/>
+		</xs:key>
+		<xs:keyref name="cellKeyRef" refer="gdl:cellKey">
+			<xs:selector xpath="./gdl:Section/cells"/>
+			<xs:field xpath="@id"/>
+		</xs:keyref>
+		-->
+		<xs:key name="sectionKey">
+			<xs:selector xpath="./gdl:Section"/>
+			<xs:field xpath="@num"/>
+		</xs:key>
+		<xs:keyref name="sectionKeyRef" refer="gdl:sectionKey">
+			<xs:selector xpath="./gdl:Cell"/>
+			<xs:field xpath="@section_ref"/>
+		</xs:keyref>
+
+		<xs:key name="layerKey">
+			<xs:selector xpath="./gdl:Layer"/>
+			<xs:field xpath="@num"/>
+		</xs:key>
+		<xs:keyref name="layerKeyRef" refer="gdl:layerKey">
+			<xs:selector xpath="./gdl:Cell"/>
+			<xs:field xpath="@layer_ref"/>
+		</xs:keyref>
+
+		<xs:unique name="unit_guid_unique">
+			<xs:selector xpath="./gdl:Unit"/>
+			<xs:field xpath="@Guid"/>
+		</xs:unique>
+
+		<xs:key name="unitKey">
+			<xs:selector xpath="./gdl:Unit"/>
+			<xs:field xpath="@unit_id"/>
+		</xs:key>
+		<xs:keyref name="unitKeyRef" refer="gdl:unitKey">
+			<xs:selector xpath="./gdl:Cell/gdl:lambda | ./gdl:Cell/gdl:R_cell"/>
+			<xs:field xpath="@unit"/>
+		</xs:keyref>
+		
+	</xs:element>
+
+	<!-- Template w 2 Sections & 1 Layer -->
+
+	<xs:complexType name="GridAB1">
+		<xs:sequence>
+			<xs:element name="Cell" type="gdl:Cell"  minOccurs ="2" maxOccurs="2" nillable="false"/>
+			<xs:element name="Section" type="gdl:Section"  minOccurs ="2" maxOccurs="2" nillable="false"/>
+			<xs:element name="Layer" type="gdl:Layer"  minOccurs ="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="Template_2Sections_1Layer" type="gdl:Cumulative" minOccurs ="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="Unit" type="siu:StandardUnit" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="Grid_2x1" type="gdl:GridAB1" nillable="true">
+		<xs:key name="sectionKey1">
+			<xs:selector xpath="./gdl:Section"/>
+			<xs:field xpath="@num"/>
+		</xs:key>
+		<xs:keyref name="sectionKeyRef1" refer="gdl:sectionKey1">
+			<xs:selector xpath="./gdl:Cell"/>
+			<xs:field xpath="@section_ref"/>
+		</xs:keyref>
+
+		<xs:key name="layerKey1">
+			<xs:selector xpath="./gdl:Layer"/>
+			<xs:field xpath="@num"/>
+		</xs:key>
+		<xs:keyref name="layerKeyRef1" refer="gdl:layerKey1">
+			<xs:selector xpath="./gdl:Cell"/>
+			<xs:field xpath="@layer_ref"/>
+		</xs:keyref>
+		<xs:unique name="Section_Layer1">
+			<xs:selector xpath="./gdl:Cell"/>
+			<xs:field xpath="@section_ref"/>
+			<xs:field xpath="@layer_ref"/>
+		</xs:unique>
+	</xs:element>
+	
+	<!-- Template w 1 Section & 2 Layers -->
+
+	<xs:complexType name="GridA12">
+		<xs:sequence>
+			<xs:element name="Cell" type="gdl:Cell"  minOccurs ="2" maxOccurs="2" nillable="false"/>
+			<xs:element name="Section" type="gdl:Section"  minOccurs ="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="Layer" type="gdl:Layer"  minOccurs ="2" maxOccurs="2" nillable="false"/>
+			<xs:element name="Template_1Section_2Layers" type="gdl:Cumulative" minOccurs ="1" maxOccurs="1" nillable="false"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="Grid_1x2" type="gdl:GridA12" nillable="true">
+		<xs:key name="sectionKey2">
+			<xs:selector xpath="./gdl:Section"/>
+			<xs:field xpath="@num"/>
+		</xs:key>
+		<xs:keyref name="sectionKeyRef2" refer="gdl:sectionKey2">
+			<xs:selector xpath="./gdl:Cell"/>
+			<xs:field xpath="@section_ref"/>
+		</xs:keyref>
+
+		<xs:key name="layerKey2">
+			<xs:selector xpath="./gdl:Layer"/>
+			<xs:field xpath="@num"/>
+		</xs:key>
+		<xs:keyref name="layerKeyRef2" refer="gdl:layerKey2">
+			<xs:selector xpath="./gdl:Cell"/>
+			<xs:field xpath="@layer_ref"/>
+		</xs:keyref>
+		<xs:unique name="Section_Layer2">
+			<xs:selector xpath="./gdl:Cell"/>
+			<xs:field xpath="@section_ref"/>
+			<xs:field xpath="@layer_ref"/>
+		</xs:unique>
+	</xs:element>
+	
+	<!-- Template w 2 Sections & 2 Layers -->
+
+	<xs:complexType name="GridAB12">
+		<xs:sequence>
+			<xs:element name="Cell" type="gdl:Cell"  minOccurs ="4" maxOccurs="4" nillable="false"/>
+			<xs:element name="Section" type="gdl:Section"  minOccurs ="2" maxOccurs="2" nillable="false"/>
+			<xs:element name="Layer" type="gdl:Layer"  minOccurs ="2" maxOccurs="2" nillable="false"/>
+			<xs:element name="Template_2Sections_2Layers" type="gdl:Cumulative" minOccurs ="1" maxOccurs="1" nillable="false"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="Grid_2x2" type="gdl:GridAB12" nillable="true">
+		<xs:key name="sectionKey3">
+			<xs:selector xpath="./gdl:Section"/>
+			<xs:field xpath="@num"/>
+		</xs:key>
+		<xs:keyref name="sectionKeyRef3" refer="gdl:sectionKey3">
+			<xs:selector xpath="./gdl:Cell"/>
+			<xs:field xpath="@section_ref"/>
+		</xs:keyref>
+
+		<xs:key name="layerKey3">
+			<xs:selector xpath="./gdl:Layer"/>
+			<xs:field xpath="@num"/>
+		</xs:key>
+		<xs:keyref name="layerKeyRef3" refer="gdl:layerKey3">
+			<xs:selector xpath="./gdl:Cell"/>
+			<xs:field xpath="@layer_ref"/>
+		</xs:keyref>
+		<xs:unique name="Section_Layer3">
+			<xs:selector xpath="./gdl:Cell"/>
+			<xs:field xpath="@section_ref"/>
+			<xs:field xpath="@layer_ref"/>
+		</xs:unique>
+	</xs:element>
+	
+</xs:schema>
