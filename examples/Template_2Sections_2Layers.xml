@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Grid_2x2 xmlns="https://github.com/galina-p-tuwien/digital_guidelines">
+	<Cell Guid="cell_1A" id="cell_1A" section_ref="sA" layer_ref="L01">
+		<R_cell unit="m_sq_K_per_W">
+			<value>1.25</value>
+		</R_cell>
+		<lambda unit="W_per_m_and_K">
+			<value>0.12</value>
+		</lambda>
+	</Cell>
+	<Cell Guid="cell_1B" id="cell_1B" section_ref="sB" layer_ref="L01">
+		<R_cell unit="m_sq_K_per_W">
+			<value>3.84</value>
+		</R_cell>
+		<lambda unit="W_per_m_and_K">
+			<value>0.04</value>
+		</lambda>
+	</Cell>
+	<Cell Guid="cell_2A" id="cell_2A" section_ref="sA" layer_ref="L02">
+		<R_cell unit="m_sq_K_per_W">
+			<value>0.83</value>
+		</R_cell>
+		<lambda unit="W_per_m_and_K">
+			<value>0.12</value>
+		</lambda>
+	</Cell>
+	<Cell Guid="cell_2B" id="cell_2B" section_ref="sB" layer_ref="L02">
+		<R_cell unit="m_sq_K_per_W">
+			<value>0.83</value>
+		</R_cell>
+		<lambda unit="W_per_m_and_K">
+			<value>0.12</value>
+		</lambda>
+	</Cell>
+	
+	<Section Guid="sect_A" id="sect_A" num="sA">
+		<R_sect unit="m_sq_K_per_W">
+			<value>2.25</value>
+		</R_sect>
+		<f_sect unit="NONE">
+			<value>0.4</value>
+		</f_sect>
+	</Section>
+	<Section Guid="sect_B" id="sect_B" num="sB">
+		<R_sect unit="m_sq_K_per_W">
+			<value>4.85</value>
+		</R_sect>
+		<f_sect unit="NONE">
+			<value>0.6</value>
+		</f_sect>
+	</Section>
+	<Layer Guid="lay_01" id="lay_01" num="L01">
+		<R_layer unit="m_sq_K_per_W">
+			<value>2.1</value>
+		</R_layer>
+		<d_layer unit="m">
+			<value>0.15</value>
+		</d_layer>
+	</Layer>
+	<Layer Guid="lay_02" id="lay_02" num="L02">
+		<R_layer unit="m_sq_K_per_W">
+			<value>0.83</value>
+		</R_layer>
+		<d_layer unit="m">
+			<value>0.1</value>
+		</d_layer>
+	</Layer>
+
+	<Template_2Sections_2Layers Guid="T2x2">
+		<R_si unit="m_sq_K_per_W">
+			<value>0.13</value>
+		</R_si>
+		<R_se unit="m_sq_K_per_W">
+			<value>0.04</value>
+		</R_se>
+		<R_tot unit="m_sq_K_per_W">
+			<value>3.21</value>
+		</R_tot>
+		<R_tot_upper unit="m_sq_K_per_W">
+			<value>3.32</value>
+		</R_tot_upper>
+		<R_tot_lower unit="m_sq_K_per_W">
+			<value>3.1</value>
+		</R_tot_lower>
+		<sections>sect_A sect_B</sections>
+		<layers>lay_01 lay_02</layers>
+	</Template_2Sections_2Layers>
+</Grid_2x2>
